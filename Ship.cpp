@@ -5,10 +5,7 @@
 #include "Game.h"
 #include "Laser.h"
 
-Ship::Ship(Game* game)
-	:Actor(game)
-	,mLaserCooldown(0.0f)
-	,mCircle(nullptr)
+Ship::Ship(Game* game) : Actor(game), mLaserCooldown(0.0f), mCircle(nullptr)
 {
 	// Position
 	SetPosition(Vector2(512.0f, 384.0f));

@@ -1,4 +1,3 @@
-
 #pragma once
 #include "SDL/SDL.h"
 #include "SDL/SDL_ttf.h"
@@ -50,6 +49,7 @@ private:
 	// All the sprite components drawn
 	std::vector<class SpriteComponent*> mSprites;
 
+	// Window and Renderer
 	SDL_Window* mWindow;
 	SDL_Renderer* mRenderer;
 	SDL_Texture* textTexture;
@@ -67,7 +67,7 @@ private:
 	int bestScore;
 	int mHeight;
 	int mWidth;
-	int round;
+	int round; // Game goes from Round 1 to 2 and so on once all large asteroids destroyed
 
 	// Text
 	TTF_Font* mFont;

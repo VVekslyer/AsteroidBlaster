@@ -1,7 +1,5 @@
-
 #include "Game.h"
 #include "SDL/SDL_image.h"
-#include <algorithm>
 #include "Actor.h"
 #include "SpriteComponent.h"
 #include "Ship.h"
@@ -26,7 +24,7 @@ bool Game::Initialize()
 		return false;
 	}
 	
-	mWindow = SDL_CreateWindow("Vitaliy Vekslyer - CMPT 1267 - Final Project - ASTEROID BLASTER", 100, 100, 1024, 768, 0);
+	mWindow = SDL_CreateWindow("Vitaliy Vekslyer - Asteroid Blaster", 100, 100, 1024, 768, SDL_WINDOW_FULLSCREEN);
 	if (!mWindow)
 	{
 		SDL_Log("Failed to create window: %s", SDL_GetError());
@@ -46,7 +44,7 @@ bool Game::Initialize()
 		return false;
 	}
 
-	// Intialize font
+	// Intialize fonts
 	TTF_Init();
 	mFont = TTF_OpenFont("basis33.ttf", 42);
 	mFontGM = TTF_OpenFont("basis33.ttf", 72);
@@ -171,9 +169,8 @@ void Game::GenerateOutput()
 	
 	// Draw all sprite components
 	for (auto sprite : mSprites)
-	{
 		sprite->Draw(mRenderer);
-	}
+	
 
 	// Text
 	SDL_Color textColor = { 255, 255, 255 };
@@ -210,7 +207,7 @@ void Game::GenerateOutput()
 	SDL_RenderCopyEx(mRenderer, textTexture, NULL, &renderQuad, 0, NULL, SDL_FLIP_NONE);
 
 
-	// If the player dies, generate a game over screen.
+	// If the player dies, generate a game over screen
 	if (mShip->dead)
 	{
 		SDL_Color textColor = { 255, 255, 255 };
@@ -226,7 +223,7 @@ void Game::GenerateOutput()
 		SDL_RenderCopyEx(mRenderer, textTexture, NULL, &renderQuad, 0, NULL, SDL_FLIP_NONE);
 	}
 
-	// If all asteroids are destroyed, generate new ones.
+	// If all asteroids are destroyed, generate new ones
 	if (mAsteroids.empty() && mSmallerAsteroids.empty())
 	{
 		numAsteroids += 10;
